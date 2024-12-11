@@ -4,6 +4,28 @@ using UnityEngine;
 
 public class BasketController : MonoBehaviour
 {
+    public AudioClip appleSE;
+    public AudioClip bonbSE;
+    AudioSource aud;
+
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+        this.aud = GetComponent<AudioSource>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Apple")
+        {
+            this.aud.PlayOneShot(this.appleSE);
+        }
+        else
+        {
+            this.aud.PlayOneShot(this.bonbSE);
+        }
+        Destroy(other.gameObject);
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(00))
