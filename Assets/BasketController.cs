@@ -7,11 +7,13 @@ public class BasketController : MonoBehaviour
     public AudioClip appleSE;
     public AudioClip bonbSE;
     AudioSource aud;
+    GameObject director;
 
     private void Start()
     {
         Application.targetFrameRate = 60;
         this.aud = GetComponent<AudioSource>();
+        this.director = GameObject.Find("GameDirector");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,10 +21,12 @@ public class BasketController : MonoBehaviour
         if (other.gameObject.tag == "Apple")
         {
             this.aud.PlayOneShot(this.appleSE);
+            this.director.GetComponent<GameDirector>().GetApple();
         }
         else
         {
             this.aud.PlayOneShot(this.bonbSE);
+            this.director.GetComponent<GameDirector>().GetBomb();
         }
         Destroy(other.gameObject);
     }
