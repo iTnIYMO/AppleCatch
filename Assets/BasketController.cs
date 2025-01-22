@@ -27,6 +27,7 @@ public class BasketController : MonoBehaviour
         {
             this.aud.PlayOneShot(this.bonbSE);
             this.director.GetComponent<GameDirector>().GetBomb();
+            GetComponent<ParticleSystem>().Play();
         }
         Destroy(other.gameObject);
     }
